@@ -1,4 +1,4 @@
-# #Activate nvm
+#Activate nvm
 . ~/.nvm/nvm.sh
 
 #Changing to server directory
