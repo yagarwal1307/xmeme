@@ -3,12 +3,12 @@ const mongoSanitize = require('express-mongo-sanitize');
 const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
 
-const swaggerDocument = require('./swagger.json');
 require('./db/mongoose')
 const memeRouter = require('./routers/meme');
+const swaggerDocument = require('./swagger.json');
 
-const env = process.env.NODE_ENV || 'development';
 const app = express();
+const env = process.env.NODE_ENV;
 
 var forceSsl = function (req, res, next) {
   if (req.headers['x-forwarded-proto'] !== 'https') {
@@ -20,7 +20,6 @@ var forceSsl = function (req, res, next) {
 };
 
 if (env === 'production') app.use(forceSsl);
-
 app.use(express.json());
 app.use(mongoSanitize());
 app.use(cors());

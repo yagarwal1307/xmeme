@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const dbURL = process.env.DATABASE_URL || "mongodb://127.0.0.1:27017/xmemeTest";
+const dbURL = process.env.DATABASE_URL;
 
 module.exports = function(app){
 
