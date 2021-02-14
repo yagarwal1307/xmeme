@@ -9,6 +9,7 @@ import './App.css';
 
 function App() {
 
+  //Toasts for different status codes
   const showToast = (statusCode) => {
     if(statusCode === 200) toast.success("Success!")
     else if(statusCode === 201) toast.success("Meme Uploaded!");

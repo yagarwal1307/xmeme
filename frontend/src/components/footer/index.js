@@ -1,6 +1,7 @@
 import React from 'react';
 import { Segment, Container, List, Header, Icon } from 'semantic-ui-react'
 
+//Meme page footer
 const footer = () => {
   return (
     <Segment inverted vertical style={{ margin: '5em 0em 0em', padding: '5em 0em' }}>

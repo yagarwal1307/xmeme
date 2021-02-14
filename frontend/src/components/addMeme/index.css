@@ -1,3 +1,4 @@
+/* Keep add meme button fixed at bottom right */
 .addMeme-button {
   position: fixed;
   bottom: 20px;

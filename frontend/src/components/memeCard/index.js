@@ -2,11 +2,14 @@ import React from 'react';
 import './index.css';
 import { Card, Grid } from 'semantic-ui-react';
 import EditButtonModal from '../editMeme'
+
+//Import image placeholder
 import imagePlaceholder from '../../assets/placeholder.gif';
 
 const card = (props) => {
   return (
     <Card fluid raised centered className='meme-card'>
+      {/* If image url is invalid replace it with the placeholder */}
       <img src={props.url} style={{ maxHeight: '300px', maxWidth: '100%' }} alt='Meme' onError={(e)=>{e.target.onerror = null; e.target.src=imagePlaceholder}}/>
       <Card.Content>
         <Card.Description>

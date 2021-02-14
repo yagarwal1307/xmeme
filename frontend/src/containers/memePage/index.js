@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { Grid, Dimmer, Loader } from 'semantic-ui-react';
+
 import Card from '../../components/memeCard';
 import AddMemeButton from '../../components/addMeme';
-import './index.css';
+
+//Import axios instance from axios-meme file
 import axios from '../../axios-xmeme';
+import './index.css';
+
 
 class Memepage extends Component {
 
@@ -17,18 +21,22 @@ class Memepage extends Component {
     this.memeList();
   }
 
+  //Pass this handler to Addmeme compononent
+  //Saves us from the overhead of requesting database for meme when we know what meme we have sent
   addMemeHandler(meme) {
     let memes = [...this.state.memes];
-    if(memes.length >= 100) memes.pop();
+    if(memes.length >= 100) memes.pop(); //If there are already 100 memes on page. Pop the last page and insert the new meme on the page
     memes.splice(0, 0, meme);
     this.setState({ memes });
   }
 
+  //Pass this handler to editMeme button in addMeme component
   editMemeHandler(id, newData) {
     let memes = [...this.state.memes];
 
     for(let i=0; i<memes.length; i++) {
       if(memes[i].id === id) {
+        //Update the updated meme with the new Data sent
         memes[i].url = newData.url;
         memes[i].caption = newData.caption;
         break;
@@ -38,6 +46,7 @@ class Memepage extends Component {
     this.setState({memes});
   }
 
+  //Request the memes from the server
   memeList() {
     axios.get('/memes')
       .then(response => {
@@ -50,12 +59,15 @@ class Memepage extends Component {
   }
 
   render() {
+
+    //When the page first load use a loader
     let memes = (
       <Dimmer active>
         <Loader size='large'>loading</Loader>
       </Dimmer>
     )
 
+    //Update the meme with the cards of memes
     if (!this.state.loading) {
       memes = this.state.memes.map(meme => {
         return (

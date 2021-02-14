@@ -1,6 +1,8 @@
 import React from 'react';
 import { Header, Icon, Divider } from 'semantic-ui-react'
 
+//Meme page header
+
 const header = () => {
   return (
     <div style={{ marginTop: '30px' }}>

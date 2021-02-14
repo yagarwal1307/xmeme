@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
-import axios from '../../axios-xmeme';
 import IsImageURL from 'is-image-url';
 import { Modal, Button, Form } from 'semantic-ui-react';
 
+//Import the axios instance from axios-meme file
+import axios from '../../axios-xmeme';
+
+
 class EditMeme extends Component {
   state = {
-    open: false,
+    open: false, //Check if the modal to enter new meme details is open or not
     newData: {
       url: this.props.url,
       caption: this.props.caption
     },
+    //Check if new meme data is valid or not
     error: {
       url: null,
       caption: null
@@ -18,11 +22,14 @@ class EditMeme extends Component {
 
   setOpen(value) {
     this.setState({
+      //Toggle the meme edit form modal
+      //Initialize the edit form with initial meme value recieved via props for an individual meme
       open: value,
       newData: {
         url: this.props.url,
         caption: this.props.caption
       },
+      //Check the validity of new values
       error: {
         url: null,
         caption: null
@@ -35,6 +42,7 @@ class EditMeme extends Component {
     newData[fieldName] = event.target.value;
     this.setState({ newData });
 
+    //Validation for caption
     if (fieldName === 'caption') {
       const error = { ...this.state.error };
       if (event.target.value === '') {
@@ -49,6 +57,7 @@ class EditMeme extends Component {
       this.setState({ error })
     }
 
+    //Validation for URL
     if (fieldName === 'url') {
       const error = { ...this.state.error };
       if (!IsImageURL(event.target.value)) {
@@ -66,6 +75,7 @@ class EditMeme extends Component {
 
   onSubmitHandler() {
     const meme = { ...this.state.newData };
+    //If user tries to send empty url or caption in the request. Replace it with initial values
     if (meme.url === '') { meme.url = this.props.url; }
     if (meme.caption === '') { meme.caption = this.props.caption; }
     axios.patch('/memes/'+ this.props.id, meme)
@@ -110,6 +120,7 @@ class EditMeme extends Component {
                   onChange={(event) => this.inputChangeHandler(event, 'url')}
                   error={this.state.error.url}
                 />
+                {/* Only enable the button if all the fields are valid */}
                 <Button disabled={this.state.error.url || this.state.error.caption} positive onClick={() => this.onSubmitHandler()}>
                   Confirm
               </Button>
