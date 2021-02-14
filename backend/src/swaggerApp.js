@@ -1,3 +1,5 @@
+//Different app for Swagger UI. So that it can be served on different PORT during development
+
 const express = require('express');
 const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
