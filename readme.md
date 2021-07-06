@@ -1,5 +1,6 @@
 ## General info
-Stage 2B submission for XMeme
+Stage 2B submission for XMeme.
+
 You can check swagger documentation for backend rest api here: https://xmeme1307.herokuapp.com/swagger-ui/
 
 
